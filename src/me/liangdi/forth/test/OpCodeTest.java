@@ -10,8 +10,8 @@ public class OpCodeTest {
 
 	public static void main(String[] args) {
 		OpCode oc = new OpCode();
-		oc.code = 0xF1;
-		oc.value = 0x10;
+		oc.code = 4097;
+		oc.value = 110;
 		
 		System.out.println("oc = " + oc);
 		int ret = mergeOps(oc);
@@ -20,19 +20,20 @@ public class OpCodeTest {
 		OpCode oc2 = separateOps(ret);
 		System.out.println("oc2 = " + oc2);
 		
-		System.out.println(Integer.toBinaryString(~((byte)(1<<6))));
+		System.out.println(Integer.toBinaryString(~(1<<6) & 0xFFFFFFFF >>> 24));
+		System.out.println(Integer.toBinaryString(0xFF));
 	}
 
 	private static int mergeOps(OpCode code) {
 		int ret = 0x00;
-		ret = code.code << 8 & 0xFF00 | code.value;
+		ret = code.code << 16 & 0xFFFF0000 | code.value;
 		return ret;
 	}
 
 	private static OpCode separateOps(int code) {
 		OpCode opCode = new OpCode();
-		opCode.value =(short)(code & 0x00FF);
-		opCode.code = (short)(code >>> 8);
+		opCode.value =code & 0x0000FFFF;
+		opCode.code =(code >>> 16);
 		return opCode;
 	}
 }
