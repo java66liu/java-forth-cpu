@@ -8,14 +8,24 @@ import java.util.Stack;
  */
 public class ForthStack {
 	public Stack<Integer> stack = new Stack<>();
-	public int size = 16;
 
 	public ForthStack() {
+		
 	}
-
+	public Integer pop(){
+		return stack.pop();
+	}
 	
-	public ForthStack(int size) {
-		this.size = size;
+	public Integer push(Integer item){
+		return stack.push(item);
+	}
+	
+	public Integer size (){
+		return stack.size();
+	}
+	
+	public Integer get(int index){
+		return stack.get(index);
 	}
 	
 }

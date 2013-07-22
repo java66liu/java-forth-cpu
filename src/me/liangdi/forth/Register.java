@@ -29,7 +29,9 @@ public class Register {
 			 
 		}
 	}
-
+	public void setValue(int value){
+		this.value = value;
+	}
 	/**
 	 * 重置
 	 */
